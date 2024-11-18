@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Войти</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Войти</h1>
+<form id="loginForm">
+    <label for="login">Логин:</label>
+    <input type="text" id="login" name="login" placeholder="Введите логин" required>
+    <div class="error-message" id="loginError"></div>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+    <div class="error-message" id="passwordError"></div>
+
+    <button type="submit">Войти</button>
+</form>
+<div id="loadingIndicator" class="loading-indicator" style="display: none;">
+    <div class="spinner"></div>
+</div>
+<!-- Подключаем внешний JavaScript-файл -->
+<script src="/js/loginScripts.js"></script>
+</body>
+</html>
