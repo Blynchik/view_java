@@ -1,5 +1,5 @@
 // Функция для отправки запроса на вход пользователя
-async function loginUser (login, password) {
+async function loginUser(login, password) {
     const userDto = { login, password };
     showLoadingIndicator();
     const errors = validateFields(login, password);
@@ -35,6 +35,7 @@ async function loginUser (login, password) {
 
             // Отображение успешного входа
             displaySuccess(responseBody);
+            window.location.href = 'hero.html';
         }
     } catch (error) {
         hideLoadingIndicator();
@@ -53,7 +54,7 @@ function displayErrors(errorResponse) {
             if (error.exception === 'BindingValidationException' && error.field) {
                 displayFieldError(error.field, error.descr);
             } else {
-            console.error('Ошибка сети или сервера:', error);
+                console.error('Ошибка сети или сервера:', error);
                 errorMessage += `\nОшибка: ${error.exception}\nПоле: ${error.field}\nОписание: ${error.descr}`;
             }
         });
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const login = document.getElementById('login').value;
             const password = document.getElementById('password').value;
 
-            await loginUser (login, password);
+            await loginUser(login, password);
         });
     }
 });

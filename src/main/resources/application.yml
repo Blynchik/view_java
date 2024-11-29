@@ -8,8 +8,14 @@ spring:
     openfeign:
       client:
         config:
+
           auth:
             url: http://localhost:8765/api/auth
+            connection-timeout: 5000
+            read-timeout: 5000
+
+          hero:
+            url: http://localhost:8765/api/hero
             connection-timeout: 5000
             read-timeout: 5000
 
@@ -28,6 +34,6 @@ resilience4j:
         automaticTransitionFromOpenToHalfOpenEnabled: true
         recordFailurePredicate: ru.service.view.config.ClientRecordFailurePredicate
     instances:
-      myCircuitBreaker:
+      defaultCircuitBreaker:
         baseConfig: default
         waitDurationInOpenState: 10s

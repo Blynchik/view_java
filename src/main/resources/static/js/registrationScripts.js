@@ -1,12 +1,12 @@
 // Функция для отправки запроса на регистрацию пользователя
-async function registerUser (login, password) {
+async function registerUser(login, password) {
     const userDto = { login, password };
     showLoadingIndicator();
     const errors = validateFields(login, password);
     if (errors.length > 0) {
-            hideLoadingIndicator();
-            errors.forEach(error => displayFieldError(error.field, error.message));
-            return;
+        hideLoadingIndicator();
+        errors.forEach(error => displayFieldError(error.field, error.message));
+        return;
     }
     try {
         const response = await fetch('/api/auth/registration', {
@@ -27,8 +27,9 @@ async function registerUser (login, password) {
             }
         } else {
             // Дожидаемся завершения входа после успешной регистрации
-            await loginUser (login, password);
+            await loginUser(login, password);
             displayRegistrationSuccess(responseBody);
+            window.location.href = 'createHero.html';
         }
     } catch (error) {
         hideLoadingIndicator();
@@ -38,7 +39,7 @@ async function registerUser (login, password) {
 }
 
 // Функция для отправки запроса на вход пользователя
-async function loginUser (login, password) {
+async function loginUser(login, password) {
     const userDto = { login, password };
     showLoadingIndicator();
     try {

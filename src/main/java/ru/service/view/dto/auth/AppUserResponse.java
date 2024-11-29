@@ -1,4 +1,4 @@
-package ru.service.view.dto;
+package ru.service.view.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

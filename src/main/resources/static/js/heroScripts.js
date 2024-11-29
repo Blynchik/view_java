@@ -1,3 +1,38 @@
+// Вызов функции получения героя при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    getHeroOwn();
+});
+
+async function getHeroOwn() {
+    const accessToken = await checkAndRefreshAccessToken();
+    showLoadingIndicator();
+    try {
+        const response = await fetch('/api/hero', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        const responseBody = await response.json();
+        hideLoadingIndicator();
+        if (!response.ok) {
+            if (responseBody.exceptions) {
+                displayErrors(responseBody);
+            } else {
+                handleGenericError(response, responseBody);
+            }
+        } else {
+            displaySuccess(responseBody);
+        }
+    } catch (error) {
+        hideLoadingIndicator();
+        console.error('Ошибка сети или сервера:', error);
+        alert('Произошла ошибка при соединении с сервером.');
+    }
+}
+
 // Функция для проверки срока действия токена
 async function checkAndRefreshAccessToken() {
     const accessToken = localStorage.getItem('accessToken');
@@ -37,7 +72,7 @@ async function checkAndRefreshAccessToken() {
         } else {
             // Если refresh токен тоже истек, перенаправляем на страницу входа
             alert('Сессия истекла. Пожалуйста, войдите снова.');
-            window.location.href = '/login'; // Перенаправление на страницу входа
+            window.location.href = 'login.html'; // Перенаправление на страницу входа
             return null;
         }
     }
@@ -85,4 +120,54 @@ async function sendProtectedRequest(url, options) {
     // Отправляем защищенный запрос
     const response = await fetch(url, options);
     return response.json(); // Возвращаем ответ
+}
+
+function showLoadingIndicator() {
+    document.getElementById('loadingIndicator').style.display = 'flex';
+}
+
+function hideLoadingIndicator() {
+    document.getElementById('loadingIndicator').style.display = 'none';
+}
+
+function displayErrors(errorResponse) {
+    // Очистить старые сообщения об ошибках
+    clearErrors();
+
+    let errorMessage = 'Произошли ошибки:\n';
+    if (errorResponse.exceptions) {
+        errorResponse.exceptions.forEach(error => {
+            if (error.exception === 'BindingValidationException' && error.field) {
+                displayFieldError(error.field, error.descr);
+            } else {
+                console.error('Ошибка сети или сервера:', error);
+                errorMessage += `\nОшибка: ${error.exception}\nПоле: ${error.field}\nОписание: ${error.descr}`;
+            }
+        });
+    }
+
+    // Отображаем общее сообщение об ошибке, если оно есть
+    if (errorMessage !== 'Произошли ошибки:\n') {
+        alert(errorMessage);
+    }
+}
+
+function clearErrors() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(element => {
+        element.innerHTML = ''; // Очищаем содержимое элемента
+        element.style.display = 'none';
+    });
+}
+
+// Функция для отображения успешного ответа
+function displaySuccess(heroResponse) {
+    document.getElementById('name').innerText = heroResponse.name;
+    document.getElementById('lastname').innerText = heroResponse.lastname;
+    document.getElementById('str').innerText = heroResponse.str;
+    document.getElementById('dex').innerText = heroResponse.dex;
+    document.getElementById('con').innerText = heroResponse.con;
+    document.getElementById('intl').innerText = heroResponse.intl;
+    document.getElementById('wis').innerText = heroResponse.wis;
+    document.getElementById('cha').innerText = heroResponse.cha;
 }

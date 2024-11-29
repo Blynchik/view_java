@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание героя</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <h1>Создание героя</h1>
+    <form id="heroForm">
+        <!-- Поле ввода имени -->
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" placeholder="Введите имя героя" required><br><br>
+        <div class="error-message" id="nameError"></div>
+
+        <!-- Поле ввода фамилии -->
+        <label for="lastname">Фамилия:</label>
+        <input type="text" id="lastname" name="lastname" placeholder="Введите фамилию героя" required><br><br>
+        <div class="error-message" id="lastnameError"></div>
+
+        <!-- Количество очков распределения -->
+        <label for="points">Количество очков распределения:</label>
+        <span id="points">60</span><br><br>
+        <div class="error-message" id="commonError"></div>
+
+        <!-- Значение силы -->
+        <label for="str">Сила:</label>
+        <input type="number" id="str" name="str" value="90"><br><br>
+        <div class="error-message" id="strError"></div>
+
+        <!-- Значение ловкости -->
+        <label for="dex">Ловкость:</label>
+        <input type="number" id="dex" name="dex" value="90"><br><br>
+        <div class="error-message" id="dexError"></div>
+
+        <!-- Значение выносливости -->
+        <label for="con">Телосложение:</label>
+        <input type="number" id="con" name="con" value="90"><br><br>
+        <div class="error-message" id="conError"></div>
+
+        <!-- Значение интеллекта -->
+        <label for="intl">Интеллект:</label>
+        <input type="number" id="intl" name="intl" value="90"><br><br>
+        <div class="error-message" id="intlError"></div>
+
+        <!-- Значение мудрости -->
+        <label for="wis">Мудрость:</label>
+        <input type="number" id="wis" name="wis" value="90"><br><br>
+        <div class="error-message" id="wisError"></div>
+
+        <!-- Значение харизмы -->
+        <label for="cha">Харизма:</label>
+        <input type="number" id="cha" name="cha" value="90"><br><br>
+        <div class="error-message" id="chaError"></div>
+
+        <!-- Кнопка подтверждения -->
+        <button type="submit">Создать героя</button>
+    </form>
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="/js/createHeroScripts.js"></script>
+</body>
+
+</html>

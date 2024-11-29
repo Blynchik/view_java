@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о герое</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <div class="hero-container">
+        <h1>Информация о герое</h1>
+        <div class="hero-info">
+            <label>Имя:</label>
+            <p id="name"></p>
+
+            <label>Фамилия:</label>
+            <p id="lastname"></p>
+
+            <label>Сила:</label>
+            <p id="str"></p>
+
+            <label>Ловкость:</label>
+            <p id="dex"></p>
+
+            <label>Выносливость:</label>
+            <p id="con"></p>
+
+            <label>Интеллект:</label>
+            <p id="intl"></p>
+
+            <label>Мудрость:</label>
+            <p id="wis"></p>
+
+            <label>Харизма:</label>
+            <p id="cha"></p>
+        </div>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Подключаем внешний JavaScript-файл -->
+    <script src="/js/heroScripts.js"></script>
+</body>
+
+</html>

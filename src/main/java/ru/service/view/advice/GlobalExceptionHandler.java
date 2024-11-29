@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(CallNotPermittedException.class)
-    public ResponseEntity<ExceptionResponse> handleCallNotPermitException(CallNotPermittedException ex) {
+    private ResponseEntity<ExceptionResponse> handleCallNotPermitException(CallNotPermittedException ex) {
         logException(ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<ExceptionResponse> handleFeignException(ResponseStatusException ex) {
+    private ResponseEntity<ExceptionResponse> handleFeignException(ResponseStatusException ex) {
         logException(ex);
         return ResponseEntity
                 .status(ex.getStatusCode())
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse> handleException(Exception ex) {
+    private ResponseEntity<ExceptionResponse> handleException(Exception ex) {
         logException(ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
