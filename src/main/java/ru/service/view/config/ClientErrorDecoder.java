@@ -26,7 +26,7 @@ public class ClientErrorDecoder implements ErrorDecoder {
         // Считываем тело ответа при ошибке
         String errorBody = null;
         try {
-            //feignClient не докодирует тело данных ошибок
+            //feignClient не декодирует тело данных ошибок
             if (response.status() == 401 || response.status() == 403) {
                 errorBody = new ObjectMapper().writeValueAsString(
                         new ExceptionResponse(List.of(new ExceptionInfo("", "", "Authorization or authentication error"))));

@@ -19,6 +19,11 @@ spring:
             connection-timeout: 5000
             read-timeout: 5000
 
+          event:
+            url: http://localhost:8765/api/event
+            connection-timeout: 5000
+            read-timeout: 5000
+
 resilience4j:
   circuitbreaker:
     configs:
