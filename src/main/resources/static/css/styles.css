@@ -1,61 +1,4 @@
-.loading-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    /* Убедитесь, что индикатор находится выше других элементов */
-}
-
-.spinner {
-    border: 8px solid #f3f3f3;
-    /* Цвет фона */
-    border-top: 8px solid #3498db;
-    /* Цвет спиннера */
-    border-radius: 50%;
-    width: 50px;
-    /* Размер спиннера */
-    height: 50px;
-    /* Размер спиннера */
-    animation: spin 1s linear infinite;
-    /* Анимация */
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.login-link {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 4px;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 15px;
-}
-
-.login-link:hover {
-    background-color: #0056b3;
-}
-
-.link-container {
-    text-align: center;
-    margin-top: 15px;
-}
-
+/* Основные стили для body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -63,11 +6,13 @@ body {
     padding: 20px;
 }
 
+/* Заголовок страницы */
 h1 {
     text-align: center;
     color: #333;
 }
 
+/* Стили для формы */
 form {
     background-color: #fff;
     border-radius: 5px;
@@ -77,6 +22,7 @@ form {
     padding: 20px;
 }
 
+/* Стили для элементов формы */
 label {
     display: block;
     margin-bottom: 5px;
@@ -100,6 +46,7 @@ input[type="password"]:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+/* Кнопка */
 button {
     background-color: #007bff;
     color: white;
@@ -114,9 +61,215 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Стили для сообщения об ошибке */
 .error-message {
     color: red;
     font-size: 0.9em;
     margin-top: -10px;
     margin-bottom: 15px;
+}
+
+/* Стили для информации о герое */
+.hero-info {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет переносить строки, если не хватает места */
+    gap: 10px; /* Расстояние между элементами */
+}
+
+.hero-attribute {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Отступ между парами "ключ-значение" */
+}
+
+.hero-attribute label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.hero-attribute p {
+    margin: 0;
+}
+
+/* Стили для индикатора загрузки */
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Убедитесь, что индикатор находится выше других элементов */
+}
+
+/* Стили для спиннера */
+.spinner {
+    border: 8px solid #f3f3f3; /* Цвет фона */
+    border-top: 8px solid #3498db; /* Цвет спиннера */
+    border-radius: 50%;
+    width: 50px; /* Размер спиннера */
+    height: 50px; /* Размер спиннера */
+    animation: spin 1s linear infinite; /* Анимация */
+}
+
+/* Анимация вращения */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Стили для контейнера с сообщениями */
+.text-container {
+    background-color: #f9f9f9; /* Светлый фон для контейнера */
+    border: 1px solid #ccc; /* Обводка контейнера */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 20px; /* Отступы внутри контейнера */
+    margin-top: 20px; /* Отступ сверху */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Заголовок для блока сообщений */
+.text-container h2 {
+    font-size: 1.5em; /* Размер шрифта заголовка */
+    margin-bottom: 15px; /* Отступ снизу заголовка */
+    color: #333; /* Цвет текста заголовка */
+}
+
+/* Стили для каждого сообщения */
+.message {
+    background-color: #e7f3fe; /* Светло-синий фон для сообщений */
+    border-left: 5px solid #2196F3; /* Синяя левая граница */
+    padding: 5px; /* Отступы внутри сообщения */
+    margin-bottom: 5px; /* Отступ снизу сообщения */
+    border-radius: 4px; /* Скругленные углы для сообщений */
+}
+
+/* Стили для ссылки входа */
+.login-link {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.login-link:hover {
+    background-color: #0056b3;
+}
+
+/* Контейнер для ссылок */
+.link-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.event-timestamp {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.event-title-container {
+    font-size: 1em; /* Умеренный размер шрифта */
+        font-weight: bold; /* Жирный текст для акцента */
+        color: #555; /* Темно-серый цвет для спокойного вида */
+        background-color: #f5f5f5; /* Светло-серый фон для гармонии */
+        border-left: 4px solid #6c757d; /* Тонкая темно-серая граница для акцента */
+        border-radius: 4px; /* Легкое скругление углов */
+        padding-left: 8px;
+}
+
+.decision-log-container {
+    font-size: 1em; /* Умеренный размер шрифта */
+    font-weight: normal; /* Обычное начертание текста */
+    color: #4a4a4a; /* Темно-серый цвет текста */
+    background-color: #f9f9f9; /* Светлый фон */
+    border-left: 4px solid #ff9800; /* Левая граница с акцентным оранжевым цветом */
+    padding: 10px; /* Внутренние отступы */
+    margin-top: 15px; /* Отступ сверху */
+    border-radius: 4px; /* Скругленные углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    font-style: italic; /* Небольшой наклон текста для акцента */
+    text-align: center; /* Центрирование текста */
+}
+
+.decision-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 10px; /* Добавляем промежутки между кнопками */
+}
+
+.decision-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.decision-button:active {
+    background-color: #1e7e34;
+    transform: scale(0.98);
+}
+
+.decision-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.decision-log-container {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.decision-log-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.decision-log-container li {
+    margin: 5px 0;
+}
+
+/* Контейнер для полоски прогресса */
+.progress-bar-container {
+    height: 20px;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+/* Полоска прогресса */
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #76c7c0;
+    border-radius: 10px;
+}
+
+.event-note {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 5px;
 }

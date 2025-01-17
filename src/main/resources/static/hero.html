@@ -6,45 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Информация о герое</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
 </head>
 
 <body>
 
-    <div class="hero-container">
-        <h1>Информация о герое</h1>
-        <div class="hero-info">
+<div class="hero-container">
+    <h1>Информация о герое</h1>
+    <div class="hero-info">
+        <div class="hero-attribute">
             <label>Имя:</label>
             <p id="name"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Фамилия:</label>
             <p id="lastname"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Сила:</label>
             <p id="str"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Ловкость:</label>
             <p id="dex"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Выносливость:</label>
             <p id="con"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Интеллект:</label>
             <p id="intl"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Мудрость:</label>
             <p id="wis"></p>
-
+        </div>
+        <div class="hero-attribute">
             <label>Харизма:</label>
             <p id="cha"></p>
         </div>
     </div>
+</div>
 
-    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-        <div class="spinner"></div>
-    </div>
+<button id="getEvent">Искать приключение</button>
 
-    <!-- Подключаем внешний JavaScript-файл -->
-    <script src="/js/heroScripts.js"></script>
+<div class="text-container" id="textContainer">
+    <h2>Соединение WS:</h2>
+</div>
+
+<h2>Ход приключения</h2><div class=progress-bar-container id="progressBarContainer" style="display: none;"></div>
+<div class=decision-log-container id="decisionLogContainer" style="display: none;"></div>
+<div class=message-container id="messageContainer"></div>
+
+<div id="loadingIndicator" class="loading-indicator" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+<!-- Подключаем внешний JavaScript-файл -->
+<script src="/js/heroScripts.js"></script>
 </body>
 
 </html>

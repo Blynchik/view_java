@@ -14,10 +14,6 @@ import ru.service.view.dto.hero.HeroResponse;
 @Slf4j
 public class HeroController {
 
-    //todo
-    // При нажатии кнопки создать героя открывается форма для печати на принтере
-    // при 401 и 403 перебрасывать на страницу логина
-
     private final HeroApi heroApi;
 
     @Autowired
