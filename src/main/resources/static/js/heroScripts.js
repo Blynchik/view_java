@@ -2,6 +2,55 @@ var reconnectDelay = 5000; // Интервал между попытками п�
         var isReconnecting = false;
         var stompClient = null;
         var decisionInterval = null;
+// Объект для хранения соответствия между eventTitle и цветом
+const backgroundColors = [
+    "#e7f3fe", // Светло-синий
+    "#ffe0b3", // Светло-оранжевый
+    "#dff0d8", // Светло-зеленый
+    "#f2dede", // Светло-красный
+    "#d9edf7", // Светло-бирюзовый
+    "#fffacd", // Светло-желтый
+    "#f5f5f5", // Светло-серый
+    "#e6e6fa", // Лавандовый
+    "#fce4ec", // Розовый пастельный
+    "#f0f8ff", // Светло-голубой (Алиссиевый)
+    "#f8f9fa", // Бледный серо-голубой
+    "#faf2e5", // Кремовый
+    "#f9e9e3", // Персиковый
+    "#e8f5e9", // Бледно-зеленый
+    "#e0f7fa", // Светло-бирюзовый
+    "#fff8e1", // Бледно-желтый
+    "#e3f2fd", // Голубоватый
+    "#ede7f6", // Светло-фиолетовый
+    "#f1f8e9", // Лаймово-зеленый
+    "#ffebee"  // Светло-розовый
+]; // Набор цветов для фона
+const borderColors = [
+    "#2196F3", // Синий
+    "#4CAF50", // Зеленый
+    "#FF9800", // Оранжевый
+    "#F44336", // Красный
+    "#9C27B0", // Фиолетовый
+    "#3F51B5", // Темно-синий
+    "#E91E63", // Розовый
+    "#00BCD4", // Бирюзовый
+    "#FFC107", // Янтарный
+    "#8BC34A", // Светло-зеленый
+    "#795548", // Коричневый
+    "#607D8B", // Серо-синий
+    "#FF5722", // Глубокий оранжевый
+    "#673AB7", // Индиго
+    "#000000", // Черный
+    "#FFD700", // Золотой
+    "#00FF00", // Лаймово-зеленый
+    "#00FFFF", // Голубой
+    "#FF00FF", // Фуксия
+    "#A52A2A", // Коричневый (дуб)
+    "#808080"  // Серый
+]; // Набор цветов для левой границы
+var currentEventTitle = null;
+var currentBackgroundColor = null;
+var currentBorderColor = null;
 
 // Вызов функции получения героя при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
@@ -116,6 +165,12 @@ async function connect() {
                 const eventDescription = parsedMessage.description || parsedMessage.resultDescr || "Описание отсутствует";
                 const decisions = parsedMessage.decisions || null;
 
+                if(currentEventTitle == null || currentEventTitle != eventTitle){
+                                currentEventTitle = eventTitle;
+                                currentBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+                                currentBorderColor = borderColors[Math.floor(Math.random() * borderColors.length)];
+                }
+
                 console.log("Event Title: " + eventTitle);
                 console.log("Event Description: " + eventDescription);
                 console.log("Event Decisions: " + decisions);
@@ -157,6 +212,8 @@ async function connect() {
                     descriptionContainer.innerHTML = `<p>${decisionDescription}</p>`;
                     const messageContainer = document.createElement('div');
                     messageContainer.className = 'message';
+                    messageContainer.style.backgroundColor = currentBackgroundColor;
+                    messageContainer.style.borderLeft = `5px solid ${currentBorderColor}`;
                     const messagesContainer = document.getElementById('messageContainer');
                     const timestampContainer = document.createElement('div');
                     timestampContainer.className = 'event-timestamp';
@@ -187,6 +244,8 @@ async function connect() {
 
                 // Создаем элементы для нового сообщения
                 const messageContainer = document.createElement('div');
+                messageContainer.style.backgroundColor = currentBackgroundColor;
+                messageContainer.style.borderLeft = `5px solid ${currentBorderColor}`;
                 messageContainer.className = 'message';
 
                 const titleContainer = document.createElement('div');

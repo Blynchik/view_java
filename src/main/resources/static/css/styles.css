@@ -144,8 +144,6 @@ button:hover {
 
 /* Стили для каждого сообщения */
 .message {
-    background-color: #e7f3fe; /* Светло-синий фон для сообщений */
-    border-left: 5px solid #2196F3; /* Синяя левая граница */
     padding: 5px; /* Отступы внутри сообщения */
     margin-bottom: 5px; /* Отступ снизу сообщения */
     border-radius: 4px; /* Скругленные углы для сообщений */
