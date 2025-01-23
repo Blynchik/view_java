@@ -124,32 +124,6 @@ async function connect() {
         if (stompClient && stompClient.connected) {
                         console.log('Sending random event request');
                         stompClient.send("/app/random-event", {});
-
-                        // Показать контейнер с прогресс-баром
-                        const progressBarContainer = document.getElementById('progressBarContainer');
-                        progressBarContainer.style.display = 'block';
-
-                        // Создать полоску прогресса
-                        const progressBar = document.createElement('div');
-                        progressBar.classList.add('progress-bar');
-                        progressBarContainer.appendChild(progressBar);
-
-                        // Сбросить полоску прогресса
-                        progressBar.style.width = '0%';
-
-                        // Анимация заполнения полоски
-                        let startTime = Date.now();
-                        const duration = 30000; // 30 секунд
-                        const animateProgress = () => {
-                            const elapsedTime = Date.now() - startTime;
-                            const progress = Math.min((elapsedTime / duration) * 100, 100);
-                            progressBar.style.width = `${progress}%`;
-
-                            if (progress < 100) {
-                                requestAnimationFrame(animateProgress);
-                            }
-                        };
-                        animateProgress();
                     } else {
                         console.log('Not connected');
                         document.getElementById('textContainer').innerHTML += '<p><strong>Not connected, refresh page, please</strong></p>';
@@ -161,9 +135,41 @@ async function connect() {
                 // Парсим сообщение
                 const parsedMessage = JSON.parse(message.body);
 
+                if (parsedMessage.processing !== undefined) {
+                            // Показать контейнер с прогресс-баром
+                            const progressBarContainer = document.getElementById('progressBarContainer');
+                            progressBarContainer.style.display = 'block';
+
+                            // Проверяем, существует ли прогресс-бар
+                            let progressBar = progressBarContainer.querySelector('.progress-bar');
+                            if (!progressBar) {
+                                // Если прогресс-бара нет, создаем его
+                                progressBar = document.createElement('div');
+                                progressBar.classList.add('progress-bar');
+                                progressBarContainer.appendChild(progressBar);
+                            }
+
+                            // Устанавливаем ширину прогресс-бара на основе значения processing
+                            const progress = Math.round(parsedMessage.processing * 100); // Перевод в проценты
+                            progressBar.style.width = `${progress}%`;
+
+                            // Лог для проверки
+                            console.log(`Updated progress: ${progress}%`);
+
+                            // Скрываем прогресс-бар, если значение достигло 100%
+                            if (progress >= 100) {
+                                progressBarContainer.style.display = 'none';
+                                progressBarContainer.innerHTML = ''; // Очищаем контейнер прогресса
+                            }
+                } else if(parsedMessage) {
+                console.log("Hello " + parsedMessage);
                 const eventTitle = parsedMessage.title || parsedMessage.eventTitle || "Неизвестное событие";
                 const eventDescription = parsedMessage.description || parsedMessage.resultDescr || "Описание отсутствует";
                 const decisions = parsedMessage.decisions || null;
+
+                if(parsedMessage.heroResponse){
+                displaySuccess(parsedMessage.heroResponse);
+                }
 
                 if(currentEventTitle == null || currentEventTitle != eventTitle){
                                 currentEventTitle = eventTitle;
@@ -305,7 +311,7 @@ async function connect() {
                         messageContainer.appendChild(button);
                     });
                 }
-
+}
             } catch (error) {
                 console.error("Failed to parse message body: ", error);
             }
